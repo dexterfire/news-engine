@@ -1,0 +1,39 @@
+storage:
+  url: "${DATABASE_URL}"
+
+collector:
+  miniflux_url: "${MINIFLUX_URL}"
+  miniflux_user: "${MINIFLUX_USER}"
+  miniflux_password: "${MINIFLUX_PASSWORD}"
+
+extractor:
+  engine: trafilatura
+
+dedup:
+  threshold: 0.90
+
+cluster:
+  thresholds:
+    title: 0.45
+    entity: 0.30
+    keyword: 0.15
+    time: 0.10
+  time_window_days: 7
+
+translate:
+  engine: opus_mt
+  model: "${OPUS_MT_MODEL}"
+
+images:
+  searxng_url: "${SEARXNG_URL}"
+  clip_model: "${CLIP_MODEL}"
+
+llm:
+  local_model: "${LOCAL_LLM_MODEL}"
+
+api:
+  host: 0.0.0.0
+  port: 8000
+
+jobs:
+  max_workers: 8

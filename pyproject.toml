@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "news-engine"
+version = "0.1.0"
+description = "Modular self-hosted gaming news engine"
+readme = "README.md"
+requires-python = ">=3.13"
+license = { text = "MIT" }
+authors = [{ name = "News Engine" }]
+keywords = ["news", "rss", "gaming", "pipeline"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "sqlalchemy>=2.0",
+    "psycopg2-binary>=2.9",
+    "alembic>=1.13",
+    "trafilatura>=1.6",
+    "feedparser>=6.0",
+    "click>=8.1",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "pillow>=10.4",
+    "imagehash>=4.3",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.6",
+]
+mt = [
+    "ctranslate2>=4.4",
+    "transformers>=4.44",
+]
+clip = [
+    "clip-by-olive>=0.0.4",
+]
+all = [
+    "news-engine[dev,mt,clip]",
+]
+
+[project.scripts]
+engine = "news_engine.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]
