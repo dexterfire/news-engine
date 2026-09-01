@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.venv/
+venv/
+*.sqlite3
+*.db
+
+# Throwaway prototype artifacts
+**/newsengine_prototype.sqlite3
+**/__pycache__/
+
+# Environment
+.env
+.env.local
+*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Python build
+build/
+dist/
+*.egg

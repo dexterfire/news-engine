@@ -1,0 +1,3 @@
+# PostgreSQL from day 1 for the MVP
+
+We use PostgreSQL (via Docker Compose on host port 5433) as the primary store from the first MVP, not SQLite. A throwaway prototype (`prototypes/storage/bench.py`) showed JSONB + GIN index is ~5x faster than SQLite for the deeply-nested Story/Fact/Content JSON querying that is the core read path, and that SQLite cannot express "any element of a JSON array matches" (`@>` containment) in one query. The batch-ingest penalty (SQLite ~4.6x faster) is a one-time cost; PG's concurrency and enforced FK integrity compound as the pipeline grows. The `json_col()` helper (JSONB with a SQLite JSON variant) keeps the model portable if a lightweight embedded path is ever needed.
